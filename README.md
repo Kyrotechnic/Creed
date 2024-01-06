@@ -1,8 +1,7 @@
-# Kore (1.0.6)
+# Kore (2.0.0-alpha)
 
 Kore is a forge 1.8.9 mod, kore goal is to automate simple skyblock annoying and repetitive tasks. You can access the mod through OneConfig or /koremod
 
-![Powered by OneConfig](https://polyfrost.org/img/cozy_vector.svg)
 ## Features
 
 - Render 
@@ -17,17 +16,18 @@ Kore is a forge 1.8.9 mod, kore goal is to automate simple skyblock annoying and
 
 ## Screenshots
 
-![App Screenshot](screenshots/render.png)
-
-![App Screenshot](screenshots/player.png)
-
-![App Screenshot](screenshots/other.png)
+- soon
 
 ## Contributing
 
 Contributions are always welcome!
 
 Create a feature for `Kore` and open a `Pull Request` with your code!
+
+## Credits
+
+- valekatoz
+- Kyrotechnic
 
 
 ## FAQ
