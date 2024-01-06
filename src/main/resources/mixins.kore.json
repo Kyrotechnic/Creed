@@ -3,6 +3,7 @@
   "package": "net.kore.mixins",
   "refmap": "mixins.kore.refmap.json",
   "mixins": [
-    "MixinMinecraft"
+    "MixinMinecraft",
+    "ModListMixin"
   ]
 }

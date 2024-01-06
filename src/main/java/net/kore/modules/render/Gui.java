@@ -51,7 +51,16 @@ public class Gui extends Module {
 
     public Gui() {
         super("Gui", Keyboard.KEY_RSHIFT, Module.Category.RENDER);
-        this.colorMode = new ModeSetting("Mode", aBoolean -> true, "Vape", new String[] { "Rainbow", "Color shift", "Astolfo", "Vape", "Purple", "Black", "Mint", "Devil"});
+        this.colorMode = new ModeSetting("Mode", "Vape", new String[] { "Rainbow", "Color shift", "Astolfo", "Vape", "Purple", "Black", "Mint", "Devil"})
+        {
+            @Override
+            public void cycle(int key)
+            {
+                super.cycle(key);
+
+                Kore.themeManager.setTheme(colorMode.getSelected());
+            }
+        };
         this.redCustom = new NumberSetting("Red", 0.0, 0.0, 255.0, 1.0, aBoolean -> !this.colorMode.is("Custom") && !this.colorMode.is("Pulse"));
         this.greenCustom = new NumberSetting("Green", 80.0, 0.0, 255.0, 1.0, aBoolean -> !this.colorMode.is("Custom") && !this.colorMode.is("Pulse"));
         this.blueCustom = new NumberSetting("Blue", 255.0, 0.0, 255.0, 1.0, aBoolean -> !this.colorMode.is("Custom") && !this.colorMode.is("Pulse"));
