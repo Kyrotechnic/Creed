@@ -2,7 +2,7 @@
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.7",
   "package": "net.kore.mixins",
-  "refmap": "mixins.koremod.refmap.json",
+  "refmap": "mixins.kore.refmap.json",
   "mixins": [
     "MixinMinecraft"
   ]
