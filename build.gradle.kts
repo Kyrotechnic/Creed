@@ -86,13 +86,13 @@ dependencies {
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
 
-    shadowImpl(libs.mixin)
+    compileOnly(libs.mixin)
 }
 
 // Tasks:
 
 tasks.withType(JavaCompile::class) {
-    options.encoding = "windows-1252"
+    //options.encoding = "windows-1252"
 }
 
 tasks.withType(Jar::class) {

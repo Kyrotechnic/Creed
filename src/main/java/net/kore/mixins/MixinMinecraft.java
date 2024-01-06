@@ -14,7 +14,7 @@ public class MixinMinecraft {
     @Inject(method = "startGame", at = @At("TAIL"), cancellable = false)
     public void startGame(CallbackInfo ci)
     {
-        //start client
+        Kore.mc = Minecraft.getMinecraft();
     }
 
     @Inject(method = { "runTick" }, at = { @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;dispatchKeypresses()V") })
@@ -22,9 +22,6 @@ public class MixinMinecraft {
         final int k = (Keyboard.getEventKey() == 0) ? (Keyboard.getEventCharacter() + '\u0100') : Keyboard.getEventKey();
         final char aChar = Keyboard.getEventCharacter();
         if (Keyboard.getEventKeyState()) {
-            /*if (MinecraftForge.EVENT_BUS.post(new KeyboardEvent(k, aChar))) {
-                return;
-            }*/
             if (Kore.mc.currentScreen == null) {
                 Kore.handleKey(k);
             }

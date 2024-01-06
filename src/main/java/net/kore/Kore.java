@@ -33,22 +33,22 @@ public class Kore {
     public static Gui clickGui;
     public static void start()
     {
-        moduleManager = new ModuleManager();
+        Kore.mc = Minecraft.getMinecraft();
 
-        moduleManager.init();
+        moduleManager = new ModuleManager("net.kore.modules");
+
+        moduleManager.initReflection();
 
         configManager = new ConfigManager();
 
         themeManager = new ThemeManager();
-
-        mc = Minecraft.getMinecraft();
 
         loadChangelog();
     }
 
     public static void handleKey(int key)
     {
-        for (Module module : moduleManager.getModules())
+        for (Module module : moduleManager.modules)
         {
             if (module.getKeycode() == key)
             {
@@ -65,12 +65,14 @@ public class Kore {
     @Mod.EventHandler
     public void startForge(FMLPreInitializationEvent pre)
     {
-        start();
+
     }
 
     @Mod.EventHandler
     public void startLate(FMLInitializationEvent event)
     {
+        start();
+
         Fonts.bootstrap();
     }
 }

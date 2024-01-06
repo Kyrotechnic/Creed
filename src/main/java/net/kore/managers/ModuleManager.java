@@ -1,33 +1,43 @@
 package net.kore.managers;
 
 import net.kore.modules.Module;
+import net.kore.modules.render.Gui;
 import org.reflections.Reflections;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+
 public class ModuleManager {
     public CopyOnWriteArrayList<Module> modules = new CopyOnWriteArrayList<>();
-    public void init()
-    {
-        Reflections reflection = new Reflections("net.kore.modules");
+    public  String classPath;
 
-        for (Class<? extends Module> module : reflection.getSubTypesOf(Module.class))
+    public ModuleManager(String classPath)
+    {
+        this.classPath = classPath;
+    }
+
+    public void initReflection()
+    {
+        Reflections reflections = new Reflections(classPath);
+        Set<Class<? extends Module>> moduleClasses = reflections.getSubTypesOf(Module.class);
+
+        for (Class<? extends Module> clazz : moduleClasses)
         {
             try {
-                Module mod = module.getDeclaredConstructor().newInstance();
-
-                modules.add(mod);
-
-                mod.assign();
+                Module module = clazz.getDeclaredConstructor().newInstance();
+                modules.add(module);
+                module.assign();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                e.printStackTrace();
+                ex.printStackTrace();
             }
         }
     }
-
     public List<Module> getModules()
     {
         return modules;

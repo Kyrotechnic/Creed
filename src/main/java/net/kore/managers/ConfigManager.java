@@ -25,6 +25,18 @@ public class ConfigManager
     public ConfigManager()
     {
         new File(Kore.mc.mcDataDir + "/config/Kore").mkdir();
+
+        File configFile = new File(Kore.mc.mcDataDir + "/config/Kore/Kore.json");
+
+        if (!configFile.exists())
+        {
+            try {
+                configFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         configPath = Kore.mc.mcDataDir.getPath() + "/config/Kore/configs/";
         loadConfig();
     }

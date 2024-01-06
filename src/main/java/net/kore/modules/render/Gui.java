@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.Color;
@@ -49,7 +50,7 @@ public class Gui extends Module {
     public static final StringSetting commandPrefix = new StringSetting("Prefix", ".", 1);
 
     public Gui() {
-        super("Gui", 54, Module.Category.RENDER);
+        super("Gui", Keyboard.KEY_RSHIFT, Module.Category.RENDER);
         this.colorMode = new ModeSetting("Mode", aBoolean -> true, "Vape", new String[] { "Rainbow", "Color shift", "Astolfo", "Vape", "Purple", "Black", "Mint", "Devil"});
         this.redCustom = new NumberSetting("Red", 0.0, 0.0, 255.0, 1.0, aBoolean -> !this.colorMode.is("Custom") && !this.colorMode.is("Pulse"));
         this.greenCustom = new NumberSetting("Green", 80.0, 0.0, 255.0, 1.0, aBoolean -> !this.colorMode.is("Custom") && !this.colorMode.is("Pulse"));
