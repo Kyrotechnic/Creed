@@ -70,6 +70,9 @@ repositories {
     maven("https://repo.spongepowered.org/maven/")
     // If you don't want to log in with your real minecraft account, remove this line
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    maven("https://repo.sk1er.club/repository/maven-public/")
+    maven("https://repo.sk1er.club/repository/maven-releases/")
+    maven("https://jitpack.io")
 }
 
 val shadowImpl: Configuration by configurations.creating {
@@ -87,6 +90,14 @@ dependencies {
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
 
     compileOnly(libs.mixin)
+
+    shadowImpl("gg.essential:loader-launchwrapper:1.2.1")
+    implementation("gg.essential:essential-1.8.9-forge:12132+g6e2bf4dc5") {
+        exclude(module = "asm")
+        exclude(module = "asm-commons")
+        exclude(module = "asm-tree")
+        exclude(module = "gson")
+    }
 }
 
 // Tasks:
@@ -104,6 +115,7 @@ tasks.withType(Jar::class) {
         // If you don't want mixins, remove these lines
         this["TweakClass"] = "gg.essential.loader.stage0.EssentialSetupTweaker"
         this["MixinConfigs"] = "mixins.$modid.json"
+        this["FMLCorePlugin"] = "net.kore.mixins.MixinLoader"
     }
 }
 
