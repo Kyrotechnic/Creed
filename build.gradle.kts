@@ -34,7 +34,7 @@ blossom {
 
 // Minecraft configuration:
 loom {
-    log4jConfigs.from(file("log4j2.xml"))
+    log4jConfigs.from(file(".gradle/loom-cache/log4j.xml"))
     launchConfigs {
         "client" {
             // If you don't want mixins, remove these lines
