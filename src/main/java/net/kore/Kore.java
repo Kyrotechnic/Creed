@@ -9,6 +9,7 @@ import net.kore.modules.protection.ModHider;
 import net.kore.modules.render.Gui;
 import net.kore.util.font.Fonts;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -46,6 +47,11 @@ public class Kore {
         themeManager = new ThemeManager();
 
         loadChangelog();
+
+        for (Module module : moduleManager.modules)
+        {
+            MinecraftForge.EVENT_BUS.register(module);
+        }
     }
 
     public static void handleKey(int key)

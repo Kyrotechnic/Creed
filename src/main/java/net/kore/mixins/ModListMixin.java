@@ -20,7 +20,7 @@ public class ModListMixin {
     @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"))
     public void constructor(List<ModContainer> containerList, CallbackInfo ci)
     {
-        if (Kore.modHider.isToggled())
+        if (Kore.modHider.isToggled() && Kore.mc.isIntegratedServerRunning())
         {
             this.modTags.entrySet().removeIf(mod -> !mod.getKey().equalsIgnoreCase("fml") && !mod.getKey().equalsIgnoreCase("forge") && !mod.getKey().equalsIgnoreCase("mcp"));
         }
