@@ -90,6 +90,7 @@ dependencies {
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
     modRuntimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
     shadowImpl(libs.mixin)
+    shadowImpl("com.google.common:google-collect:0.5")
 }
 
 // Tasks:
