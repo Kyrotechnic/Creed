@@ -17,12 +17,17 @@ public class ModListMixin {
 
     @Shadow private Map<String, String> modTags;
 
-    @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"))
+    @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"), cancellable = true)
     public void constructor(List<ModContainer> containerList, CallbackInfo ci)
     {
-        if (Kore.modHider.isToggled() && !Kore.mc.isIntegratedServerRunning())
+        modTags.clear();
+
+        for (ModContainer mod : containerList)
         {
-            this.modTags.entrySet().removeIf(mod -> !mod.getKey().equalsIgnoreCase("fml") && !mod.getKey().equalsIgnoreCase("forge") && !mod.getKey().equalsIgnoreCase("mcp"));
+            if (mod.getModId() == Kore.MOD_ID)
+                continue;
+
+            modTags.put(mod.getModId(), mod.getVersion());
         }
     }
 }
