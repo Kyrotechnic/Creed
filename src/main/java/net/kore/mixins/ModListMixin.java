@@ -24,7 +24,7 @@ public class ModListMixin {
 
         for (ModContainer mod : containerList)
         {
-            if (mod.getModId().equals(Kore.MOD_ID))
+            if (mod.getModId().equals(Kore.MOD_ID) && !Kore.mc.isIntegratedServerRunning())
                 continue;
 
             modTags.put(mod.getModId(), mod.getVersion());
