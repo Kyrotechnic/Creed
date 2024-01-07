@@ -14,10 +14,7 @@ plugins {
 
 //Constants:
 
-val baseGroup: String by project
-val mcVersion: String by project
 val version = "b4"
-val mixinGroup = "me.kyroclient.mixins"
 val modid = "kore"
 
 // Toolchains:
@@ -88,9 +85,11 @@ dependencies {
     minecraft("com.mojang:minecraft:1.8.9")
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
-    modRuntimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
-    shadowImpl(libs.mixin)
-    shadowImpl("com.google.common:google-collect:0.5")
+
+    compileOnly(libs.mixin)
+
+    //maybe remove long term
+    shadowImpl("gg.essential:loader-launchwrapper:1.2.1")
 }
 
 // Tasks:
@@ -108,16 +107,13 @@ tasks.withType(Jar::class) {
         // If you don't want mixins, remove these lines
         this["TweakClass"] = "gg.essential.loader.stage0.EssentialSetupTweaker"
         this["MixinConfigs"] = "mixins.$modid.json"
-        this["FMLCorePlugin"] = "net.kore.mixins.MixinLoader"
     }
 }
 
 tasks.processResources {
     inputs.property("version", project.version)
-    inputs.property("mcversion", mcVersion)
     inputs.property("id", modid)
     inputs.property("name", "kore")
-    inputs.property("mixinGroup", mixinGroup)
 
     filesMatching(listOf("mcmod.info", "mixins.$modid.json")) {
         expand(inputs.properties)
@@ -145,9 +141,6 @@ tasks.shadowJar {
             println("Copying jars into mod: ${it.files}")
         }
     }
-
-    // If you want to include other dependencies and shadow them, you can relocate them in here
-    fun relocate(name: String) = relocate(name, "$baseGroup.deps.$name")
 }
 
 tasks.assemble.get().dependsOn(tasks.remapJar)
