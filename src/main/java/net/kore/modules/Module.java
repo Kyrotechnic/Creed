@@ -169,7 +169,9 @@ public class Module {
     {
         RENDER("Render"),
         PLAYER("Player"),
-        PROTECTIONS("Protections");
+        PROTECTIONS("Protections"),
+        MISC("Misc"),
+        DEV("Dev");
 
         public String name;
 

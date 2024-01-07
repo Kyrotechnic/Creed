@@ -13,21 +13,23 @@ import java.util.List;
 import java.util.Map;
 
 @Mixin(FMLHandshakeMessage.ModList.class)
-public class ModListMixin {
+public class MixinModList {
 
-    @Shadow private Map<String, String> modTags;
+    @Shadow(remap = false) private Map<String, String> modTags;
 
-    @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"), cancellable = true, remap = false)
     public void constructor(List<ModContainer> containerList, CallbackInfo ci)
     {
-        modTags.clear();
+        if(Kore.modHider.isToggled()) {
+            modTags.clear();
 
-        for (ModContainer mod : containerList)
-        {
-            if (mod.getModId().equals(Kore.MOD_ID) && !Kore.mc.isIntegratedServerRunning())
-                continue;
+            for (ModContainer mod : containerList)
+            {
+                if (mod.getModId().equals(Kore.MOD_ID) && !Kore.mc.isIntegratedServerRunning())
+                    continue;
 
-            modTags.put(mod.getModId(), mod.getVersion());
+                modTags.put(mod.getModId(), mod.getVersion());
+            }
         }
     }
 }

@@ -4,6 +4,6 @@
   "refmap": "mixins.kore.refmap.json",
   "mixins": [
     "MixinMinecraft",
-    "ModListMixin"
+    "MixinModList"
   ]
 }

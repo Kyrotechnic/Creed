@@ -51,7 +51,7 @@ public class Gui extends Module {
 
     public Gui() {
         super("Gui", Keyboard.KEY_RSHIFT, Module.Category.RENDER);
-        this.colorMode = new ModeSetting("Mode", "Vape", new String[] { "Rainbow", "Color shift", "Astolfo", "Vape", "Purple", "Black", "Mint", "Devil"})
+        this.colorMode = new ModeSetting("Mode", "Vape", new String[] { "Rainbow", "Color shift", "Astolfo", "Vape", "Mint", "Devil"})
         {
             @Override
             public void cycle(int key)
@@ -101,7 +101,7 @@ public class Gui extends Module {
     public void onRender(final RenderGameOverlayEvent.Post event) {
         if (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS) {
             if (this.waterMark.isEnabled()) {
-                Fonts.getSecondary().drawSmoothString("yro", Fonts.getSecondary().drawSmoothString("K", 5.0, 5.0f, Color.white.darker().getRGB()) + 1.0f, 5.0f, getColor().getRGB());
+                Fonts.getSecondary().drawSmoothString("ore", Fonts.getSecondary().drawSmoothString("K", 5.0, 5.0f, Color.white.darker().getRGB()) + 1.0f, 5.0f, getColor().getRGB());
             }
             if (this.arrayList.isEnabled()) {
                 GL11.glPushMatrix();

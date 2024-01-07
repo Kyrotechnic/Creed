@@ -6,7 +6,9 @@ import net.kore.managers.ModuleManager;
 import net.kore.managers.ThemeManager;
 import net.kore.modules.Module;
 import net.kore.modules.protection.ModHider;
+import net.kore.modules.misc.AutoExperiments;
 import net.kore.modules.render.Gui;
+import net.kore.modules.dev.Debug;
 import net.kore.util.font.Fonts;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,6 +36,8 @@ public class Kore {
     //module dependencies
     public static Gui clickGui;
     public static ModHider modHider;
+    public static AutoExperiments AutoExperiments;
+    public static Debug Debug;
     public static void start()
     {
         Kore.mc = Minecraft.getMinecraft();

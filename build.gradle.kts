@@ -13,7 +13,8 @@ plugins {
 }
 
 val version: String by project
-val modid: String by project
+val mod_name: String by project
+val mod_id: String by project
 val archiveBaseName: String by project
 
 // Toolchains:
@@ -23,8 +24,8 @@ java {
 
 blossom {
     replaceToken("@VER@", version)
-    replaceToken("@NAME@", modid)
-    replaceToken("@ID@", modid)
+    replaceToken("@NAME@", mod_name)
+    replaceToken("@ID@", mod_id)
 }
 
 
@@ -36,34 +37,29 @@ loom {
             property("mixin.debug", "true")
             property("asmhelper.verbose", "true")
             arg("--tweakClass", "gg.essential.loader.stage0.EssentialSetupTweaker")
-            arg("--mixin", "mixins.$modid.json")
+            arg("--mixin", "mixins.${mod_id}.json")
         }
     }
     forge {
         pack200Provider.set(dev.architectury.pack200.java.Pack200Adapter())
-        mixinConfig("mixins.$modid.json")
+        mixinConfig("mixins.${mod_id}.json")
     }
-    // If you don't want mixins, remove these lines
     mixin {
-        defaultRefmapName.set("mixins.$modid.refmap.json")
+        defaultRefmapName.set("mixins.${mod_id}.refmap.json")
     }
 }
 
 sourceSets.main {
-    output.resourcesDir = file("$buildDir/classes/java/main")
+    output.setResourcesDir(file("$buildDir/classes/java/main"))
 }
 
 tasks.withType(JavaCompile::class) {
     options.encoding = "windows-1252"
 }
 
-// Dependencies:
-
 repositories {
     mavenCentral()
     maven("https://repo.spongepowered.org/maven/")
-    // If you don't want to log in with your real minecraft account, remove this line
-    maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
     maven("https://repo.sk1er.club/repository/maven-public/")
     maven("https://repo.sk1er.club/repository/maven-releases/")
     maven("https://jitpack.io")
@@ -78,14 +74,13 @@ val exportLib: Configuration by configurations.creating {
 }
 
 dependencies {
-    shadowImpl("org.reflections:reflections:0.10.2")
     minecraft("com.mojang:minecraft:1.8.9")
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
 
-    modRuntimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
     compileOnly(libs.mixin)
 
+    shadowImpl("org.reflections:reflections:0.10.2")
     //maybe remove long term
     shadowImpl("gg.essential:loader-launchwrapper:1.2.1")
 }
@@ -99,18 +94,17 @@ tasks.withType(Jar::class) {
         this["FMLCorePluginContainsFMLMod"] = "true"
         this["ForceLoadAsMod"] = "true"
 
-        // If you don't want mixins, remove these lines
         this["TweakClass"] = "gg.essential.loader.stage0.EssentialSetupTweaker"
-        this["MixinConfigs"] = "mixins.$modid.json"
+        this["MixinConfigs"] = "mixins.${mod_id}.json"
     }
 }
 
 tasks.processResources {
     inputs.property("version", project.version)
-    inputs.property("id", modid)
-    inputs.property("name", "kore")
+    inputs.property("id", mod_id)
+    inputs.property("name", mod_name)
 
-    filesMatching(listOf("mcmod.info", "mixins.$modid.json")) {
+    filesMatching(listOf("mcmod.info", "mixins.${mod_id}.json")) {
         expand(inputs.properties)
     }
 }
