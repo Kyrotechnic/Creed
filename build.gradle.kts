@@ -12,10 +12,9 @@ plugins {
     "dev.lynith.multiversion.part"
 }
 
-//Constants:
-
-val version = "b4"
-val modid = "kore"
+val version: String by project
+val modid: String by project
+val archiveBaseName: String by project
 
 // Toolchains:
 java {
@@ -34,7 +33,6 @@ loom {
     log4jConfigs.from(file(".gradle/loom-cache/log4j.xml"))
     launchConfigs {
         "client" {
-            // If you don't want mixins, remove these lines
             property("mixin.debug", "true")
             property("asmhelper.verbose", "true")
             arg("--tweakClass", "gg.essential.loader.stage0.EssentialSetupTweaker")
@@ -43,7 +41,6 @@ loom {
     }
     forge {
         pack200Provider.set(dev.architectury.pack200.java.Pack200Adapter())
-        // If you don't want mixins, remove this lines
         mixinConfig("mixins.$modid.json")
     }
     // If you don't want mixins, remove these lines
@@ -86,20 +83,18 @@ dependencies {
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
 
+    modRuntimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
     compileOnly(libs.mixin)
 
     //maybe remove long term
     shadowImpl("gg.essential:loader-launchwrapper:1.2.1")
 }
 
-// Tasks:
-
 tasks.withType(JavaCompile::class) {
     //options.encoding = "windows-1252"
 }
 
 tasks.withType(Jar::class) {
-    archiveBaseName.set("KyroClient")
     manifest.attributes.run {
         this["FMLCorePluginContainsFMLMod"] = "true"
         this["ForceLoadAsMod"] = "true"
