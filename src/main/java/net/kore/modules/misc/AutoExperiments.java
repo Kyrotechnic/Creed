@@ -27,7 +27,7 @@ import net.kore.settings.BooleanSetting;
 import net.kore.util.ModUtil;
 import net.kore.util.GuiUtil;
 
-public class AutoExperiments extends  Module {
+public class AutoExperiments extends Module {
     public NumberSetting autoExperimentsDelay = new NumberSetting("Click delay (Ticks)", 10, 0, 30, 1);
     public ModeSetting delayRandomizer = new ModeSetting("Delay Randomizer", "High", new String[] { "Off", "Low", "Medium", "High" });
     public BooleanSetting chronomatronSolver = new BooleanSetting("Chronomatron",true);
