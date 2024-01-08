@@ -63,7 +63,7 @@ public class Interfaces extends Module
         };
         this.customButtons = new BooleanSetting("Custom Buttons", true);
         this.customChat = new BooleanSetting("Custom chat", true);
-        this.customChatFont = new BooleanSetting("Custom chat font", false, aBoolean -> !this.customChat.isEnabled());
+        this.customChatFont = new BooleanSetting("Custom chat font", true, aBoolean -> !this.customChat.isEnabled());
         this.blurStrength = new ModeSetting("Blur Strength", "Low", new String[] { "None", "Low", "High" }) {
             @Override
             public boolean isHidden() {
