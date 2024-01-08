@@ -1,4 +1,4 @@
-package net.kore.modules.misc;
+package net.kore.modules.protection;
 
 import io.netty.bootstrap.ChannelFactory;
 import io.netty.channel.socket.oio.OioSocketChannel;
@@ -17,7 +17,7 @@ public class Proxy extends Module {
     public StringSetting pass = new StringSetting("Password (optional)");
     public Proxy()
     {
-        super("Proxy", Category.MISC);
+        super("Proxy", Category.PROTECTIONS);
 
         addSettings(
                 proxyType,

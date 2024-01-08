@@ -9,7 +9,7 @@ import net.kore.modules.Module;
 import net.kore.modules.combat.*;
 import net.kore.modules.misc.AutoHarp;
 import net.kore.modules.protection.CustomBrand;
-import net.kore.modules.misc.Proxy;
+import net.kore.modules.protection.Proxy;
 import net.kore.modules.player.*;
 import net.kore.modules.protection.ModHider;
 import net.kore.modules.misc.AutoExperiments;

@@ -42,7 +42,7 @@ public abstract class MixinNetworkManager {
         Bootstrap bootstrap = new Bootstrap();
         Proxy proxy = Kore.proxy.getProxy();
         OioEventLoopGroup eventLoopGroup = new OioEventLoopGroup(0, new ThreadFactoryBuilder().setNameFormat("Netty Client IO #%d").setDaemon(true).build());
-        bootstrap.channelFactory(new net.kore.modules.misc.Proxy.ProxyOioChannelFactory(proxy));
+        bootstrap.channelFactory(new net.kore.modules.protection.Proxy.ProxyOioChannelFactory(proxy));
         bootstrap.group(eventLoopGroup).handler(new ChannelInitializer<Channel>() {
             protected void initChannel(Channel channel) {
                 System.out.println("ILLEGAL CHANNEL INITIALIZATION: This should be patched to net/minecraft/network/NetworkManager$5!");
