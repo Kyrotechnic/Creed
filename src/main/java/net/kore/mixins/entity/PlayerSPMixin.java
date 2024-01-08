@@ -1,7 +1,3 @@
-//Deobfuscated with https://github.com/SimplyProgrammer/Minecraft-Deobfuscator3000 using mappings "C:\Users\lukes\OneDrive\Desktop\deobfer\1.8.9 MAPPINGS"!
-
-//Decompiled by Procyon!
-
 package net.kore.mixins.entity;
 
 import net.kore.Kore;
@@ -190,6 +186,11 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
         if (this.isPotionActive(Potion.jump.id)) {
             this.motionY += (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1f;
         }
+        if (this.isSprinting() && MovementUtils.isMoving()) {
+            final float f = ((Kore.sprint.isToggled() && Kore.sprint.omni.isEnabled()) ? MovementUtils.getYaw() : ((Kore.aura.isToggled() && Aura.target != null && Kore.aura.movementFix.isEnabled()) ? RotationUtils.getRotations(Aura.target).getYaw() : this.rotationYaw)) * 0.017453292f;
+            this.motionX -= MathHelper.sin(f) * 0.2f;
+            this.motionZ += MathHelper.cos(f) * 0.2f;
+        }
         this.isAirBorne = true;
         ForgeHooks.onLivingJump(this.inventory.player);
         this.triggerAchievement(StatList.jumpStat);
@@ -229,7 +230,7 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
     public void superMoveEntityWithHeading(final float strafe, final float forward, final boolean onGround, final float friction2Multi) {
         if (this.isServerWorld()) {
             if (!this.isInWater() || ((this.inventory.player) instanceof EntityPlayer && this.capabilities.isFlying)) {
-                if (!this.isInLava() || (this.inventory.player) instanceof EntityPlayer && this.capabilities.isFlying) {
+                if (!this.isInLava() || ((this.inventory.player) instanceof EntityPlayer && this.capabilities.isFlying)) {
                     float f4 = 0.91f;
                     if (onGround) {
                         f4 = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1, MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91f;
@@ -345,7 +346,7 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
 
     @Inject(method = { "onLivingUpdate" }, at = { @At(value = "INVOKE", target = "Lnet/minecraft/client/entity/AbstractClientPlayer;onLivingUpdate()V") }, cancellable = true)
     public void onLivingUpdate(final CallbackInfo ci) {
-        /*if (Kore.sprint.omni.isEnabled() && Kore.sprint.isToggled()) {
+        if (Kore.sprint.omni.isEnabled() && Kore.sprint.isToggled()) {
             if (!MovementUtils.isMoving() || this.isSneaking() || (this.getFoodStats().getFoodLevel() <= 6.0f && !this.capabilities.allowFlying)) {
                 if (this.isSprinting()) {
                     this.setSprinting(false);
@@ -354,7 +355,7 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
             else if (!this.isSprinting()) {
                 this.setSprinting(true);
             }
-        }*/
+        }
         if (Kore.noSlow.isToggled() && (this.isUsingItem() || Kore.autoBlock.isBlocking())) {
             final EnumAction action = this.getHeldItem().getItem().getItemUseAction(this.getHeldItem());
             if (action == EnumAction.BLOCK) {
@@ -439,6 +440,56 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
             double d4 = x;
             final double d5 = y;
             double d6 = z;
+            final boolean flag = ((this.onGround && this.isSneaking()) && (PlayerUtils.isOnGround(1.0)) && (this.inventory.player) instanceof EntityPlayer);
+            if (flag) {
+                final double d7 = 0.05;
+                while (x != 0.0 && this.worldObj.getCollidingBoundingBoxes(this.inventory.player, this.getEntityBoundingBox().offset(x, -1.0, 0.0)).isEmpty()) {
+                    if (x < d7 && x >= -d7) {
+                        x = 0.0;
+                    }
+                    else if (x > 0.0) {
+                        x -= d7;
+                    }
+                    else {
+                        x += d7;
+                    }
+                    d4 = x;
+                }
+                while (z != 0.0 && this.worldObj.getCollidingBoundingBoxes(this.inventory.player, this.getEntityBoundingBox().offset(0.0, -1.0, z)).isEmpty()) {
+                    if (z < d7 && z >= -d7) {
+                        z = 0.0;
+                    }
+                    else if (z > 0.0) {
+                        z -= d7;
+                    }
+                    else {
+                        z += d7;
+                    }
+                    d6 = z;
+                }
+                while (x != 0.0 && z != 0.0 && this.worldObj.getCollidingBoundingBoxes(this.inventory.player, this.getEntityBoundingBox().offset(x, -1.0, z)).isEmpty()) {
+                    if (x < d7 && x >= -d7) {
+                        x = 0.0;
+                    }
+                    else if (x > 0.0) {
+                        x -= d7;
+                    }
+                    else {
+                        x += d7;
+                    }
+                    d4 = x;
+                    if (z < d7 && z >= -d7) {
+                        z = 0.0;
+                    }
+                    else if (z > 0.0) {
+                        z -= d7;
+                    }
+                    else {
+                        z += d7;
+                    }
+                    d6 = z;
+                }
+            }
             final List<AxisAlignedBB> list1 = (List<AxisAlignedBB>)this.worldObj.getCollidingBoundingBoxes(this.inventory.player, this.getEntityBoundingBox().addCoord(x, y, z));
             final AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
             for (final AxisAlignedBB axisalignedbb2 : list1) {
@@ -552,9 +603,9 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
                 this.motionZ = 0.0;
             }
             if (d5 != y) {
-                block1.onLanded(this.worldObj, this.inventory.player);
+                block1.onLanded(this.worldObj, inventory.player);
             }
-            if (this.canTriggerWalking() && this.ridingEntity == null) {
+            if (this.canTriggerWalking() && !flag && this.ridingEntity == null) {
                 final double d19 = this.posX - d0;
                 double d20 = this.posY - d2;
                 final double d21 = this.posZ - d3;
@@ -562,7 +613,7 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
                     d20 = 0.0;
                 }
                 if (block1 != null && this.onGround) {
-                    block1.onEntityCollidedWithBlock(this.worldObj, blockpos, this.inventory.player);
+                    block1.onEntityCollidedWithBlock(this.worldObj, blockpos, inventory.player);
                 }
                 this.distanceWalkedModified += (float)(MathHelper.sqrt_double(d19 * d19 + d21 * d21) * 0.6);
                 this.distanceWalkedOnStepModified += (float)(MathHelper.sqrt_double(d19 * d19 + d20 * d20 + d21 * d21) * 0.6);
@@ -649,11 +700,11 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
                 if (flag3) {
                     if (i > 0) {
                         targetEntity.addVelocity((double)(-MathHelper.sin(this.rotationYaw * 3.1415927f / 180.0f) * i * 0.5f), 0.1, (double)(MathHelper.cos(this.rotationYaw * 3.1415927f / 180.0f) * i * 0.5f));
-                        /*if (!Kore.sprint.isToggled() || !Kore.sprint.keep.isEnabled()) {
+                        if (!Kore.sprint.isToggled() || !Kore.sprint.keep.isEnabled()) {
                             this.motionX *= 0.6;
                             this.motionZ *= 0.6;
                             this.setSprinting(false);
-                        }*/
+                        }
                     }
                     if (targetEntity instanceof EntityPlayerMP && targetEntity.velocityChanged) {
                         ((EntityPlayerMP)targetEntity).playerNetServerHandler.sendPacket(new S12PacketEntityVelocity(targetEntity));

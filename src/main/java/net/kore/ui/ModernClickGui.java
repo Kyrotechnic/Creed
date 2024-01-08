@@ -4,7 +4,9 @@ import net.kore.Kore;
 import net.kore.managers.WindowManager;
 import net.kore.ui.windows.ModuleWindow;
 import net.kore.ui.windows.Window;
+import net.kore.util.MilliTimer;
 import net.kore.util.StencilUtils;
+import net.kore.util.render.BlurUtils;
 import net.kore.util.render.GLUtil;
 import net.kore.util.render.RenderUtils;
 import net.kore.util.font.Fonts;
@@ -18,6 +20,7 @@ public class ModernClickGui extends GuiScreen {
     public WindowManager windowManager = new WindowManager();
     public static Window selectedWindow;
     public static boolean settingsOpened;
+    public static MilliTimer timer = new MilliTimer();
     private static double x;
     private static double y;
 
@@ -37,11 +40,23 @@ public class ModernClickGui extends GuiScreen {
         y = (double)sr.getScaledHeight() / 2.0 - (double)(getHeight() / 2.0f);
 
         ModuleWindow.selectedModule = null;
+
+        timer.reset();
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         int categoryOffset = 25;
+
+        /*int blurAmount = 2;
+        //blur
+        if ((blurAmount = (int) ((timer.getTimePassed()/10) + 2)) > 20)
+        {
+            blurAmount = 20;
+        }
+
+        BlurUtils.renderBlurredBackground(blurAmount);*/
+
         GLUtil.startScale((float)(getX() + (getX() + (double)getWidth())) / 2.0f, (float)(getY() + (getY() + (double)getHeight())) / 2.0f, 1.0f);
         RenderUtils.drawBorderedRoundedRect((float) getX() - 5, (float) getY() - 5, getWidth() + 10, getHeight() + 10, 6, 2 , Kore.themeManager.getPrimaryColor().getRGB(), Kore.themeManager.getSecondaryColor().getRGB());
         RenderUtils.drawBorderedRoundedRect((float)getX(), (float)getY(), 85.0f, getHeight(), 3.0f, 2.0f, Kore.themeManager.getPrimaryColor().getRGB(), Kore.themeManager.getSecondaryColor().getRGB());
@@ -74,6 +89,8 @@ public class ModernClickGui extends GuiScreen {
     public void drawTopBar(int mouseX, int mouseY)
     {
         Fonts.getPrimary().drawString("Welcome to Kore - v" + Kore.VERSION, (float)(getX() + 95), (float) (getY() + 6f), Color.WHITE.getRGB());
+
+
     }
 
     @Override
