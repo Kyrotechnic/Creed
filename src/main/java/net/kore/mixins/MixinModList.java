@@ -27,7 +27,6 @@ public class MixinModList {
             {
                 if (mod.getModId().equals(Kore.MOD_ID) && !Kore.mc.isIntegratedServerRunning())
                     continue;
-
                 modTags.put(mod.getModId(), mod.getVersion());
             }
         }

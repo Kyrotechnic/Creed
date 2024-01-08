@@ -3,14 +3,25 @@ package net.kore;
 import com.google.common.collect.Lists;
 import net.kore.managers.ConfigManager;
 import net.kore.managers.ModuleManager;
+import net.kore.managers.NotificationManager;
 import net.kore.managers.ThemeManager;
 import net.kore.modules.Module;
+import net.kore.modules.combat.*;
+import net.kore.modules.misc.CustomBrand;
+import net.kore.modules.misc.Proxy;
+import net.kore.modules.player.FastPlace;
+import net.kore.modules.player.GuiMove;
+import net.kore.modules.player.NickHider;
+import net.kore.modules.player.NoSlow;
 import net.kore.modules.protection.ModHider;
 import net.kore.modules.misc.AutoExperiments;
 import net.kore.modules.render.Gui;
 import net.kore.modules.dev.Debug;
+import net.kore.modules.render.*;
 import net.kore.util.font.Fonts;
+import net.kore.util.render.BlurUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,6 +39,7 @@ public class Kore {
     public static ModuleManager moduleManager;
     public static ConfigManager configManager;
     public static ThemeManager themeManager;
+    public static NotificationManager notificationManager;
     public static Minecraft mc;
     public static List<String> changelog;
     public static char fancy = (char) 167;
@@ -38,6 +50,24 @@ public class Kore {
     public static ModHider modHider;
     public static AutoExperiments AutoExperiments;
     public static Debug Debug;
+    public static Proxy proxy;
+    public static Giants giants;
+    public static Hitboxes hitboxes;
+    public static Aura aura;
+    public static NoSlow noSlow;
+    public static AntiBot antiBot;
+    public static FreeCam freeCam;
+    public static PopupAnimation popupAnimation;
+    public static GuiMove guiMove;
+    public static NickHider nickHider;
+    public static Interfaces interfaces;
+    public static Reach reach;
+    public static AutoBlock autoBlock;
+    public static Animations animations;
+    public static NoFallingBlocks noFallingBlocks;
+    public static CustomBrand customBrand;
+    public static FastPlace fastPlace;
+    public static InventoryDisplay inventoryDisplay;
     public static void start()
     {
         Kore.mc = Minecraft.getMinecraft();
@@ -50,12 +80,16 @@ public class Kore {
 
         themeManager = new ThemeManager();
 
+        notificationManager = new NotificationManager();
+
         loadChangelog();
 
         for (Module module : moduleManager.modules)
         {
             MinecraftForge.EVENT_BUS.register(module);
         }
+
+        BlurUtils.registerListener();
     }
 
     public static void handleKey(int key)
@@ -86,5 +120,10 @@ public class Kore {
         start();
 
         Fonts.bootstrap();
+    }
+
+    public static void sendMessage(String line)
+    {
+        mc.thePlayer.addChatMessage(new ChatComponentText(line));
     }
 }

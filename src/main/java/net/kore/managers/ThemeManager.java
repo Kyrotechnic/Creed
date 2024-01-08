@@ -21,14 +21,14 @@ public class ThemeManager {
     {
         for (Theme theme1 : themes)
         {
-            if (theme1.name == theme)
+            if (theme1.name.equals(theme))
                 activeTheme = theme1;
         }
     }
 
     public boolean is(String name)
     {
-        return name == activeTheme.name;
+        return name.equals(activeTheme.name);
     }
 
     public ThemeManager()

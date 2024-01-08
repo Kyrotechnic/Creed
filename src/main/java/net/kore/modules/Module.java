@@ -167,6 +167,7 @@ public class Module {
 
     public enum Category
     {
+        COMBAT("Combat"),
         RENDER("Render"),
         PLAYER("Player"),
         PROTECTIONS("Protections"),

@@ -2,6 +2,8 @@ package net.kore.managers;
 
 import net.kore.modules.Module;
 import net.kore.modules.render.Gui;
+import net.kore.ui.hud.Component;
+import net.kore.ui.hud.DraggableComponent;
 import org.reflections.Reflections;
 
 import java.util.List;
@@ -27,6 +29,8 @@ public class ModuleManager {
 
         for (Class<? extends Module> clazz : moduleClasses)
         {
+            if (clazz == DraggableComponent.class || clazz == Component.class) continue;
+
             try {
                 Module module = clazz.getDeclaredConstructor().newInstance();
                 modules.add(module);
