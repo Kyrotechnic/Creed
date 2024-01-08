@@ -7,11 +7,13 @@ import net.kore.managers.NotificationManager;
 import net.kore.managers.ThemeManager;
 import net.kore.modules.Module;
 import net.kore.modules.combat.*;
-import net.kore.modules.misc.CustomBrand;
+import net.kore.modules.misc.AutoHarp;
+import net.kore.modules.protection.CustomBrand;
 import net.kore.modules.misc.Proxy;
 import net.kore.modules.player.*;
 import net.kore.modules.protection.ModHider;
 import net.kore.modules.misc.AutoExperiments;
+import net.kore.modules.protection.NickHider;
 import net.kore.modules.render.Gui;
 import net.kore.modules.dev.Debug;
 import net.kore.modules.render.*;
@@ -45,7 +47,8 @@ public class Kore {
     //module dependencies
     public static Gui clickGui;
     public static ModHider modHider;
-    public static AutoExperiments AutoExperiments;
+    public static AutoExperiments autoExperiments;
+    public static AutoHarp autoHarp;
     public static Debug Debug;
     public static Proxy proxy;
     public static Giants giants;

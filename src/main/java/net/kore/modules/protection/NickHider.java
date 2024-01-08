@@ -1,4 +1,4 @@
-package net.kore.modules.player;
+package net.kore.modules.protection;
 
 import net.kore.Kore;
 import net.kore.modules.Module;
@@ -8,7 +8,7 @@ public class NickHider extends Module {
     public StringSetting nick;
     public NickHider()
     {
-        super("Nick Hider", Module.Category.PLAYER);
+        super("Nick Hider", Category.PROTECTIONS);
 
         addSettings(
                 nick = new StringSetting("Name", Kore.mc.getSession().getUsername())

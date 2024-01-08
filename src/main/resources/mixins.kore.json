@@ -29,7 +29,6 @@
     "settings.GameSettings",
     "world.MixinWorld",
     "world.MixinWorldClient",
-    "ClientBrandRetrieverMixin",
     "MinecraftAccessor",
     "MixinFontRenderer",
     "MixinMinecraft",

@@ -70,7 +70,7 @@ public class AutoExperiments extends Module {
     @Override
     public void assign()
     {
-        Kore.AutoExperiments = this;
+        Kore.autoExperiments = this;
     }
 
     @SubscribeEvent
@@ -84,7 +84,7 @@ public class AutoExperiments extends Module {
 
     @SubscribeEvent
     public void onTick(GuiScreenEvent.BackgroundDrawnEvent event) {
-        if(!Kore.AutoExperiments.isToggled()) return;
+        if(!Kore.autoExperiments.isToggled()) return;
 
         if (Kore.mc.currentScreen instanceof GuiChest) {
             GuiChest inventory = (GuiChest) event.gui;
@@ -188,7 +188,7 @@ public class AutoExperiments extends Module {
 
     @SubscribeEvent
     public void onGuiRender(GuiScreenEvent.DrawScreenEvent.Post event) {
-        if(!Kore.AutoExperiments.isToggled()) return;
+        if(!Kore.autoExperiments.isToggled()) return;
 
         if(GuiUtil.getInventoryName(event.gui).startsWith("Chronomatron") || GuiUtil.getInventoryName(event.gui).startsWith("Ultrasequencer") || GuiUtil.getInventoryName(event.gui).startsWith("Experimentation Table")) {
             Kore.mc.fontRendererObj.drawStringWithShadow("[KORE] ",5,5,new Color(255, 85, 85).getRGB());
@@ -214,7 +214,7 @@ public class AutoExperiments extends Module {
 
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
-        if(!Kore.AutoExperiments.isToggled() || event.phase != TickEvent.Phase.START) return;
+        if(!Kore.autoExperiments.isToggled() || event.phase != TickEvent.Phase.START) return;
 
         tickAmount++;
         if (tickAmount % 20 == 0) {

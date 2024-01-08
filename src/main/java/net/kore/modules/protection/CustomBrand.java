@@ -1,4 +1,4 @@
-package net.kore.modules.misc;
+package net.kore.modules.protection;
 
 import net.kore.Kore;
 import net.kore.modules.Module;
@@ -8,7 +8,7 @@ public class CustomBrand extends Module {
     public StringSetting brand = new StringSetting("Brand", "Forge");
     public CustomBrand()
     {
-        super("Custom Brand", Category.MISC);
+        super("Custom Brand", Category.PROTECTIONS);
 
         addSettings(brand);
     }
