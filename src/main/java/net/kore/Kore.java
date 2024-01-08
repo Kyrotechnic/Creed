@@ -9,10 +9,7 @@ import net.kore.modules.Module;
 import net.kore.modules.combat.*;
 import net.kore.modules.misc.CustomBrand;
 import net.kore.modules.misc.Proxy;
-import net.kore.modules.player.FastPlace;
-import net.kore.modules.player.GuiMove;
-import net.kore.modules.player.NickHider;
-import net.kore.modules.player.NoSlow;
+import net.kore.modules.player.*;
 import net.kore.modules.protection.ModHider;
 import net.kore.modules.misc.AutoExperiments;
 import net.kore.modules.render.Gui;
@@ -68,6 +65,7 @@ public class Kore {
     public static CustomBrand customBrand;
     public static FastPlace fastPlace;
     public static InventoryDisplay inventoryDisplay;
+    public static Sprint sprint;
     public static void start()
     {
         Kore.mc = Minecraft.getMinecraft();
