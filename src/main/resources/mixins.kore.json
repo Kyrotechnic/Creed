@@ -28,7 +28,6 @@
     "render.MixinRenderWither",
     "settings.GameSettings",
     "world.MixinWorld",
-    "world.MixinWorldClient",
     "MinecraftAccessor",
     "MixinFontRenderer",
     "MixinMinecraft",

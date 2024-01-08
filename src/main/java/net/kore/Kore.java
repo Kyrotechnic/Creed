@@ -64,7 +64,6 @@ public class Kore {
     public static Reach reach;
     public static AutoBlock autoBlock;
     public static Animations animations;
-    public static NoFallingBlocks noFallingBlocks;
     public static CustomBrand customBrand;
     public static FastPlace fastPlace;
     public static InventoryDisplay inventoryDisplay;

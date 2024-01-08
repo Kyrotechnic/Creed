@@ -92,7 +92,7 @@ public class Aura extends Module {
         super("Aura", 0, Category.COMBAT);
         this.namesOnly = new BooleanSetting("Names only", false);
         this.middleClick = new BooleanSetting("Middle click to add", false);
-        this.players = new BooleanSetting("Players", false);
+        this.players = new BooleanSetting("Players", true);
         this.mobs = new BooleanSetting("Mobs", true);
         this.walls = new BooleanSetting("Through walls", true);
         this.teams = new BooleanSetting("Teams", true);
