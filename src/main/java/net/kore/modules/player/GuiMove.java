@@ -27,8 +27,8 @@ public class GuiMove extends Module
     public static KeyBinding[] binds;
 
     public GuiMove() {
-        super("InvMove", Module.Category.MISC);
-        this.rotate = new BooleanSetting("Rotate", true);
+        super("InvMove", Category.PLAYER);
+        this.rotate = new BooleanSetting("Rotate", false);
         this.drag = new BooleanSetting("Alt drag", true) {
             @Override
             public boolean isHidden() {

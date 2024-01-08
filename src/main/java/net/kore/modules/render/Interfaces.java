@@ -41,6 +41,7 @@ public class Interfaces extends Module
 
     public Interfaces() {
         super("Interfaces", Category.RENDER);
+        this.setToggled(true);
         this.customScoreboard = new BooleanSetting("Custom Scoreboard", true);
         this.customFont = new BooleanSetting("Custom Font", true) {
             @Override

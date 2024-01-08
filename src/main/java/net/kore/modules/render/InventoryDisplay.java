@@ -27,22 +27,18 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public class InventoryDisplay extends DraggableComponent {
-    public NumberSetting xC;
-    public NumberSetting yC;
+    public ModeSetting position;
     public ModeSetting blurStrength;
     public InventoryDisplay()
     {
         super("Inventory HUD", Category.RENDER);
-        this.xC = new NumberSetting("X1234", 0.0, -100000.0, 100000.0, 1.0E-5, a -> true);
-        this.yC = new NumberSetting("Y1234", 0.0, -100000.0, 100000.0, 1.0E-5, a -> true);
+        this.position = new ModeSetting("Position", "Top Left", new String[] { "Top Left", "Bottom Left", "Bottom Right"});
         this.blurStrength = new ModeSetting("Blur Strength", "Low", new String[] { "None", "Low", "High" });
-        this.addSettings(this.xC, this.yC, this.blurStrength);
+        this.addSettings(this.position, this.blurStrength);
     }
 
     @SubscribeEvent
     public void onRender(final RenderGameOverlayEvent.Post event) {
-        xC.set(this.x);
-        yC.set(this.y);
         if (this.isToggled() && event.type.equals((Object)RenderGameOverlayEvent.ElementType.HOTBAR) && Kore.mc.thePlayer != null) {
             this.drawScreen();
         }
@@ -76,10 +72,13 @@ public class InventoryDisplay extends DraggableComponent {
     public HudVec drawScreen() {
         GL11.glPushMatrix();
         super.drawScreen();
+
         final ScaledResolution scaledResolution = new ScaledResolution(Kore.mc);
+
         int blur = 0;
-        final double x = this.x;
-        double y = this.y;
+        double x = 2;
+        double y = 0;
+
         final String selected = Kore.inventoryDisplay.blurStrength.getSelected();
         switch (selected) {
             case "Low": {
@@ -91,12 +90,27 @@ public class InventoryDisplay extends DraggableComponent {
                 break;
             }
         }
-        final ScaledResolution resolution = new ScaledResolution(Kore.mc);
+
+        switch (position.getSelected()) {
+            case "Top Left":
+                x = 2; // Top left, x = 0
+                y = 0; // Top left, y = 0
+                break;
+            case "Bottom Left":
+                x = 2; // Bottom left, x = 0
+                y = scaledResolution.getScaledHeight() - 82; // Adjust y for bottom left
+                break;
+            case "Bottom Right":
+                x = scaledResolution.getScaledWidth() - 184; // Adjust x for bottom right
+                y = scaledResolution.getScaledHeight() - 82; // Adjust y for bottom right
+                break;
+        }
+
         StencilUtils.initStencil();
         StencilUtils.bindWriteStencilBuffer();
         RenderUtils.drawRoundedRect2(x, y + Fonts.getPrimary().getHeight() - 4.0, 182.0, 80 - (Fonts.getPrimary().getHeight() - 4), 5.0, Color.white.getRGB());
         StencilUtils.bindReadStencilBuffer(1);
-        BlurUtils.renderBlurredBackground((float)blur, (float)resolution.getScaledWidth(), (float)resolution.getScaledHeight(), 0.0f, 0.0f, (float)scaledResolution.getScaledWidth(), (float)scaledResolution.getScaledHeight());
+        BlurUtils.renderBlurredBackground((float)blur, (float)scaledResolution.getScaledWidth(), (float)scaledResolution.getScaledHeight(), 0.0f, 0.0f, (float)scaledResolution.getScaledWidth(), (float)scaledResolution.getScaledHeight());
         StencilUtils.uninitStencil();
         this.drawBorderedRoundedRect((float)x, (float)y + Fonts.getPrimary().getHeight() - 4.0f, 182.0f, (float)(80 - (Fonts.getPrimary().getHeight() - 4)), 5.0f, 2.5f);
         Fonts.getSecondary().drawSmoothCenteredString("Inventory", (float)x + 90.0f, (float)y + Fonts.getPrimary().getHeight(), Color.white.getRGB());
