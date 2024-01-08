@@ -207,22 +207,24 @@ public abstract class MixinItemRenderer {
         float rotation2y = 0.0f;
         float rotation2z = 0.0f;
         final String selected = Kore.animations.mode.getSelected();
-        switch (selected) {
-            case "vertical spin": {
-                angle1 = (float)(System.currentTimeMillis() % 720L);
-                angle1 /= 2.0f;
-                rotation2x = 0.0f;
-                angle2 = 0.0f;
-                break;
-            }
-            case "spin": {
-                translateY = 0.8f;
-                angle1 = 60.0f;
-                angle2 = (float)(-System.currentTimeMillis() % 720L);
-                angle2 /= 2.0f;
-                rotation2z = 0.8f;
-                angle3 = 30.0f;
-                break;
+        if(Kore.animations.isToggled()) {
+            switch (selected) {
+                case "vertical spin": {
+                    angle1 = (float)(System.currentTimeMillis() % 720L);
+                    angle1 /= 2.0f;
+                    rotation2x = 0.0f;
+                    angle2 = 0.0f;
+                    break;
+                }
+                case "spin": {
+                    translateY = 0.8f;
+                    angle1 = 60.0f;
+                    angle2 = (float)(-System.currentTimeMillis() % 720L);
+                    angle2 /= 2.0f;
+                    rotation2z = 0.8f;
+                    angle3 = 30.0f;
+                    break;
+                }
             }
         }
         GlStateManager.translate(translateX, translateY, translateZ);
