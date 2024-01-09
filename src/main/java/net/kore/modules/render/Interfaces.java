@@ -154,12 +154,15 @@ public class Interfaces extends Module
             ++i3;
             final ScorePlayerTeam scoreplayerteam2 = scoreboard.getPlayersTeam(score2.getPlayerName());
             String s2 = ScorePlayerTeam.formatPlayerName((Team)scoreplayerteam2, score2.getPlayerName());
+            if (s2.contains(Kore.fancy + "ewww.hypixel.ne\ud83c\udf82" + Kore.fancy + "et") && Kore.clickGui.waterMark.isEnabled()) {
+                s2 = s2.replaceAll(Kore.fancy + "ewww.hypixel.ne\ud83c\udf82" + Kore.fancy + "et", "Kore Client");
+            }
             final float k2 = j1 - i3 * fontHeight;
             final Matcher matcher = Pattern.compile("[0-9][0-9]/[0-9][0-9]/[0-9][0-9]").matcher(s2);
             if (this.hideLobby.isEnabled() && matcher.find()) {
                 s2 = ChatFormatting.GRAY + matcher.group();
             }
-            final boolean flag = s2.equals("Oringo Client");
+            final boolean flag = s2.equals("Kore Client");
             if (flag) {
                 if (customFont) {
                     Fonts.getPrimary().drawSmoothCenteredStringWithShadow(s2, l1 + width / 2.0f, k2, Kore.themeManager.getSecondaryColor().getRGB());
@@ -206,4 +209,3 @@ public class Interfaces extends Module
         Kore.interfaces = this;
     }
 }
-
