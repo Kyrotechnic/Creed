@@ -17,7 +17,6 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -36,9 +35,43 @@ public class InventoryHud extends DraggableComponent
         super.drawScreen();
         final ScaledResolution scaledResolution = new ScaledResolution(Kore.mc);
         int blur = 0;
-        final double x = this.x;
-        double y = this.y;
+
+        double x;
+        double y;
+
+        switch (InventoryDisplay.defaultPosition.getSelected()) {
+            default:
+                x = 2; // Top left, x = 2
+                y = 0; // Top left, y = 0
+
+                this.setPosition(x, y);
+                break;
+            case "Top Right":
+                x = scaledResolution.getScaledWidth() - 184; // Adjust x for top right
+                y = 0; // Top left, y = 0
+
+                this.setPosition(x, y);
+                break;
+            case "Bottom Left":
+                x = 2; // Bottom left, x = 2
+                y = scaledResolution.getScaledHeight() - 82; // Adjust y for bottom left
+
+                this.setPosition(x, y);
+                break;
+            case "Bottom Right":
+                x = scaledResolution.getScaledWidth() - 184; // Adjust x for bottom right
+                y = scaledResolution.getScaledHeight() - 82; // Adjust y for bottom right
+
+                this.setPosition(x, y);
+                break;
+            case "Custom":
+                x = this.x;
+                y = this.y;
+                break;
+        }
+
         final String selected = Kore.inventoryDisplay.blurStrength.getSelected();
+
         switch (selected) {
             case "Low": {
                 blur = 7;
