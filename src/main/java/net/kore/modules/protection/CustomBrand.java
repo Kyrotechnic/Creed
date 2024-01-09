@@ -7,12 +7,12 @@ import net.kore.settings.StringSetting;
 
 public class CustomBrand extends Module {
     public StringSetting brand = new StringSetting("Brand", "Forge");
-    public ModeSetting forwardMethod = new ModeSetting("Forward Methoder", "Hide Forge", "Show Forge");
+    public ModeSetting forwardMethod = new ModeSetting("Forward Methoder", "Hide Forge", "Hide Forge", "Show Forge");
     public CustomBrand()
     {
         super("Custom Brand", Category.PROTECTIONS);
 
-        addSettings(brand);
+        addSettings(brand, forwardMethod);
     }
 
     @Override
