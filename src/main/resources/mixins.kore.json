@@ -12,6 +12,7 @@
     "entity.MixinRenderLivingEntity",
     "entity.PlayerMixin",
     "entity.PlayerSPMixin",
+    "forge.MixinFMLCommonHandler",
     "gui.MixinGui",
     "gui.MixinGuiButton",
     "gui.MixinGuiChat",

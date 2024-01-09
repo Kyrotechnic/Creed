@@ -1,10 +1,7 @@
 package net.kore;
 
 import com.google.common.collect.Lists;
-import net.kore.managers.ConfigManager;
-import net.kore.managers.ModuleManager;
-import net.kore.managers.NotificationManager;
-import net.kore.managers.ThemeManager;
+import net.kore.managers.*;
 import net.kore.modules.Module;
 import net.kore.modules.combat.*;
 import net.kore.modules.misc.AutoHarp;
@@ -17,6 +14,7 @@ import net.kore.modules.protection.NickHider;
 import net.kore.modules.render.Gui;
 import net.kore.modules.dev.Debug;
 import net.kore.modules.render.*;
+import net.kore.util.Notification;
 import net.kore.util.font.Fonts;
 import net.kore.util.render.BlurUtils;
 import net.minecraft.client.Minecraft;
@@ -82,6 +80,8 @@ public class Kore {
 
         notificationManager = new NotificationManager();
 
+        CommandManager.init();
+
         loadChangelog();
 
         for (Module module : moduleManager.modules)
@@ -99,6 +99,9 @@ public class Kore {
             if (module.getKeycode() == key)
             {
                 module.toggle();
+
+                if (!clickGui.disableNotifs.isEnabled())
+                    notificationManager.showNotification((module.isToggled() ? "Enabled" : "Disabled") + " " + module.getName(), 2000, Notification.NotificationType.INFO);
             }
         }
     }
@@ -117,9 +120,9 @@ public class Kore {
     @Mod.EventHandler
     public void startLate(FMLInitializationEvent event)
     {
-        start();
-
         Fonts.bootstrap();
+
+        start();
     }
 
     public static void sendMessage(String line)

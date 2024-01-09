@@ -6,7 +6,7 @@ import net.kore.util.MilliTimer;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 
-public class Component extends Module
+public class Component
 {
     public double x;
     protected double y;
@@ -14,17 +14,6 @@ public class Component extends Module
     protected double height;
     protected boolean hidden;
     protected MilliTimer hideTimer;
-
-    public Component(String name, int keycode, Category category) {
-        super(name, keycode, category);
-
-        this.hideTimer = new MilliTimer();
-    }
-
-    public Component(String name, Category category)
-    {
-        this(name, 0, category);
-    }
 
     public void onTick() {
     }

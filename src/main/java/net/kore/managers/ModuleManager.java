@@ -29,8 +29,6 @@ public class ModuleManager {
 
         for (Class<? extends Module> clazz : moduleClasses)
         {
-            if (clazz == DraggableComponent.class || clazz == Component.class) continue;
-
             try {
                 Module module = clazz.getDeclaredConstructor().newInstance();
                 modules.add(module);

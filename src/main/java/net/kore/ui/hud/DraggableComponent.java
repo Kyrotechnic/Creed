@@ -5,15 +5,6 @@ public class DraggableComponent extends Component
     public double startX;
     public double startY;
     private boolean dragging;
-
-    public DraggableComponent(String name, int keycode, Category category) {
-        super(name, keycode, category);
-    }
-
-    public DraggableComponent(String name, Category category) {
-        this(name, 0, category);
-    }
-
     public boolean isDragging() {
         return this.dragging;
     }

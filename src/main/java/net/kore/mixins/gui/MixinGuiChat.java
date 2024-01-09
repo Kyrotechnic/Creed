@@ -12,21 +12,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = { GuiChat.class }, priority = 1)
 public abstract class MixinGuiChat extends MixinGuiScreen
 {
-    @Inject(method = { "drawScreen" }, at = { @At("RETURN") })
+    @Inject(method = { "drawScreen" }, at = { @At("RETURN") }, cancellable = true)
     public void drawScreen(final int mouseX, final int mouseY, final float partialTicks, final CallbackInfo ci) {
         if (MinecraftForge.EVENT_BUS.post(new GuiChatEvent.DrawChatEvent(mouseX, mouseY))) {
             ci.cancel();
         }
     }
 
-    @Inject(method = { "keyTyped" }, at = { @At("RETURN") })
+    @Inject(method = { "keyTyped" }, at = { @At("RETURN") }, cancellable = true)
     public void keyTyped(final char typedChar, final int keyCode, final CallbackInfo ci) {
         if (MinecraftForge.EVENT_BUS.post(new GuiChatEvent.KeyTyped(keyCode, typedChar))) {
             ci.cancel();
         }
     }
 
-    @Inject(method = { "mouseClicked" }, at = { @At("RETURN") })
+    @Inject(method = { "mouseClicked" }, at = { @At("RETURN") }, cancellable = true)
     public void mouseClicked(final int mouseX, final int mouseY, final int mouseButton, final CallbackInfo ci) {
         if (MinecraftForge.EVENT_BUS.post(new GuiChatEvent.MouseClicked(mouseX, mouseY, mouseButton))) {
             ci.cancel();
