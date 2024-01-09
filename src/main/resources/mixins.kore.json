@@ -19,6 +19,7 @@
     "gui.MixinGuiContainer",
     "gui.MixinGuiIngame",
     "gui.MixinGuiScreen",
+    "network.MixinC00Handshake",
     "render.MixinEntityRenderer",
     "render.MixinItemRenderer",
     "render.MixinRender",
