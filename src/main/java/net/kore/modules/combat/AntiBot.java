@@ -60,7 +60,7 @@ public class AntiBot extends Module
 
     static {
         mode = new ModeSetting("Mode", "Hypixel", new String[] { "Hypixel" });
-        ticksInvis = new BooleanSetting("Invis ticks check", true, aBoolean -> !AntiBot.mode.is("Hypixel"));
+        ticksInvis = new BooleanSetting("Invis ticks check", false, aBoolean -> !AntiBot.mode.is("Hypixel"));
         tabTicks = new BooleanSetting("Tab ticks check", false, aBoolean -> !AntiBot.mode.is("Hypixel"));
         npcCheck = new BooleanSetting("NPC check", true, aBoolean -> !AntiBot.mode.is("Hypixel"));
         entityData = new HashMap<Integer, EntityData>();

@@ -3,7 +3,7 @@ package net.kore.util;
 import net.kore.Kore;
 import net.minecraft.util.ChatComponentText;
 
-public class ModUtil {
+public class ModUtils {
     public static void sendMessage(Object object) {
         String message = "null";
         if (object != null) {

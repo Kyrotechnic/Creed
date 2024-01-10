@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 import net.kore.Kore;
 import net.kore.settings.NumberSetting;
-import net.kore.util.ModUtil;
-import net.kore.util.GuiUtil;
+import net.kore.util.ModUtils;
+import net.kore.util.GuiUtils;
 import net.kore.util.Multithreading;
 
 public class AutoHarp extends Module {
@@ -51,7 +51,7 @@ public class AutoHarp extends Module {
 
     @SubscribeEvent
     public final void onGuiOpen(GuiOpenEvent event) {
-        inHarp = GuiUtil.getInventoryName(event.gui).startsWith("Harp -");
+        inHarp = GuiUtils.getInventoryName(event.gui).startsWith("Harp -");
         updates = 0;
         currentInventory.clear();
     }
@@ -96,7 +96,7 @@ public class AutoHarp extends Module {
                             slot = Kore.mc.thePlayer.openContainer.inventorySlots.get(finalSlotNumber);
                             timestamp = System.currentTimeMillis();
                             if(Kore.Debug.isToggled()) {
-                                ModUtil.sendMessage("(AutoHarp) Clicked Slot " + slot.slotNumber+9 + " (&c" + (timestamp - startedSongTimestamp) +"&f)");
+                                ModUtils.sendMessage("(AutoHarp) Clicked Slot " + slot.slotNumber+9 + " (&c" + (timestamp - startedSongTimestamp) +"&f)");
                             }
                             Kore.mc.playerController.windowClick(Kore.mc.thePlayer.openContainer.windowId,finalSlotNumber + 9,2,3,Kore.mc.thePlayer);
                         }, (long)autoHarpDelay.getValue()+getRandDelay(), TimeUnit.MILLISECONDS);

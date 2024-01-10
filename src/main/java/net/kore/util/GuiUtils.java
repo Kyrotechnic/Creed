@@ -5,7 +5,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.inventory.ContainerChest;
 
-public class GuiUtil {
+public class GuiUtils {
     public static String getInventoryName(GuiScreen gui) {
         if (gui instanceof GuiChest) {
             return ((ContainerChest) ((GuiChest) gui).inventorySlots).getLowerChestInventory().getDisplayName().getUnformattedText();

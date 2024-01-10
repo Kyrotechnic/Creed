@@ -24,8 +24,8 @@ import net.kore.modules.Module;
 import net.kore.settings.ModeSetting;
 import net.kore.settings.NumberSetting;
 import net.kore.settings.BooleanSetting;
-import net.kore.util.ModUtil;
-import net.kore.util.GuiUtil;
+import net.kore.util.ModUtils;
+import net.kore.util.GuiUtils;
 
 public class AutoExperiments extends Module {
     public NumberSetting autoExperimentsDelay = new NumberSetting("Click delay (Ticks)", 10, 0, 30, 1);
@@ -117,10 +117,9 @@ public class AutoExperiments extends Module {
                                         if (glass.getDisplayName().equals(chronomatronPattern.get(chronomatronMouseClicks))) {
                                             Kore.mc.playerController.windowClick(Kore.mc.thePlayer.openContainer.windowId,glassSlot.slotNumber,2,3, Kore.mc.thePlayer);
                                             if(Kore.Debug.isToggled()) {
+                                                ModUtils.sendMessage("(Chronomatron) Clicked Slot " + glassSlot.slotNumber + " (&c" + glassSlot.getStack().getDisplayName() + "&f)");
                                                 if(lastClickTime > 0) {
-                                                    ModUtil.sendMessage("(Chronomatron) Clicked Slot " + glassSlot.slotNumber + " (&c" + glassSlot.getStack().getDisplayName() + "&f) After [&c"+(System.currentTimeMillis()-lastClickTime)+"ms&f]");
-                                                } else {
-                                                    ModUtil.sendMessage("(Chronomatron) Clicked Slot " + glassSlot.slotNumber + " (&c" + glassSlot.getStack().getDisplayName() + "&f)");
+                                                    ModUtils.sendMessage("(Chronomatron) Since last click &c"+(System.currentTimeMillis()-lastClickTime)+"ms&f passed");
                                                 }
                                             }
                                             lastClickTime = System.currentTimeMillis();
@@ -153,10 +152,9 @@ public class AutoExperiments extends Module {
                             if(lastClickTime+((autoExperimentsDelay.getValue()*50L)+getRandDelay()) < System.currentTimeMillis()) {
                                 Kore.mc.playerController.windowClick(Kore.mc.thePlayer.openContainer.windowId, nextSlot.slotNumber, 2, 3, Kore.mc.thePlayer);
                                 if(Kore.Debug.isToggled()) {
+                                    ModUtils.sendMessage("(Ultrasequencer) Clicked Slot " + nextSlot.slotNumber + " (&c" + (lastUltraSequencerClicked+1) + "&f)");
                                     if(lastClickTime > 0) {
-                                        ModUtil.sendMessage("(Ultrasequencer) Clicked Slot " + nextSlot.slotNumber + " (&c" + (lastUltraSequencerClicked+1) + "&f) After [&c"+(System.currentTimeMillis()-lastClickTime)+"ms&f]");
-                                    } else {
-                                        ModUtil.sendMessage("(Ultrasequencer) Clicked Slot " + nextSlot.slotNumber + " (&c" + (lastUltraSequencerClicked+1) + "&f)");
+                                        ModUtils.sendMessage("(Ultrasequencer) Since last click &c"+(System.currentTimeMillis()-lastClickTime)+"ms&f passed");
                                     }
                                 }
                                 lastClickTime = System.currentTimeMillis();
@@ -169,10 +167,9 @@ public class AutoExperiments extends Module {
                             if(lastClickTime+((autoExperimentsDelay.getValue()*50L)+getRandDelay()) < System.currentTimeMillis()) {
                                 Kore.mc.playerController.windowClick(Kore.mc.thePlayer.openContainer.windowId, nextSlot.slotNumber, 2, 3, Kore.mc.thePlayer);
                                 if(Kore.Debug.isToggled()) {
+                                    ModUtils.sendMessage("(Ultrasequencer) Clicked Slot " + nextSlot.slotNumber + " (&c" + (lastUltraSequencerClicked+1) + "&f)");
                                     if(lastClickTime > 0) {
-                                        ModUtil.sendMessage("(Ultrasequencer) Clicked Slot " + nextSlot.slotNumber + " (&c" + (lastUltraSequencerClicked+1) + "&f) After [&c"+(System.currentTimeMillis()-lastClickTime)+"ms&f]");
-                                    } else {
-                                        ModUtil.sendMessage("(Ultrasequencer) Clicked Slot " + nextSlot.slotNumber + " (&c" + (lastUltraSequencerClicked+1) + "&f)");
+                                        ModUtils.sendMessage("(Ultrasequencer) Since last click &c"+(System.currentTimeMillis()-lastClickTime)+"ms&f passed");
                                     }
                                 }
                                 lastClickTime = System.currentTimeMillis();
@@ -190,7 +187,7 @@ public class AutoExperiments extends Module {
     public void onGuiRender(GuiScreenEvent.DrawScreenEvent.Post event) {
         if(!Kore.autoExperiments.isToggled()) return;
 
-        if(GuiUtil.getInventoryName(event.gui).startsWith("Chronomatron") || GuiUtil.getInventoryName(event.gui).startsWith("Ultrasequencer") || GuiUtil.getInventoryName(event.gui).startsWith("Experimentation Table")) {
+        if(GuiUtils.getInventoryName(event.gui).startsWith("Chronomatron") || GuiUtils.getInventoryName(event.gui).startsWith("Ultrasequencer") || GuiUtils.getInventoryName(event.gui).startsWith("Experimentation Table")) {
             Kore.mc.fontRendererObj.drawStringWithShadow("[KORE] ",5,5,new Color(255, 85, 85).getRGB());
             Kore.mc.fontRendererObj.drawStringWithShadow("AutoExperiments",42,5,Color.WHITE.getRGB());
             if(Kore.Debug.isToggled()) {
