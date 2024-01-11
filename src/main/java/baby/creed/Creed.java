@@ -6,7 +6,7 @@ import baby.creed.modules.combat.*;
 import baby.creed.modules.hidden.ClientSettings;
 import baby.creed.modules.misc.AutoExperiments;
 import baby.creed.modules.misc.AutoHarp;
-import baby.creed.modules.misc.GhostBlocks;
+import baby.creed.modules.player.GhostBlocks;
 import baby.creed.modules.player.FastPlace;
 import baby.creed.modules.player.GuiMove;
 import baby.creed.modules.player.NoSlow;
