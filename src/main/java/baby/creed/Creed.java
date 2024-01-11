@@ -16,6 +16,7 @@ import baby.creed.modules.protection.NickHider;
 import baby.creed.modules.protection.Proxy;
 import baby.creed.modules.render.*;
 import baby.creed.util.Notification;
+import baby.creed.util.SkyblockUtils;
 import baby.creed.util.font.Fonts;
 import baby.creed.util.render.BlurUtils;
 import com.google.common.collect.Lists;
@@ -92,6 +93,8 @@ public class Creed {
         {
             MinecraftForge.EVENT_BUS.register(module);
         }
+
+        MinecraftForge.EVENT_BUS.register(new SkyblockUtils());
 
         BlurUtils.registerListener();
     }

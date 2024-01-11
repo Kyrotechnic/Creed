@@ -3,6 +3,13 @@
   "package": "baby.creed.mixins",
   "refmap": "mixins.Creed.refmap.json",
   "mixins": [
+    "MinecraftAccessor",
+    "MixinFontRenderer",
+    "MixinMinecraft",
+    "MixinModList",
+    "MixinNetHandlerPlayClient",
+    "MixinNetworkManager",
+    "PlayerSPAccessor",
     "blocks.MixinBlock",
     "blocks.MixinChunk",
     "blocks.MixinCropBlock",
@@ -26,17 +33,9 @@
     "render.MixinRender",
     "render.MixinRenderCaveSpider",
     "render.MixinRenderPlayer",
-    "render.MixinRenderPlayer",
     "render.MixinRenderVillager",
     "render.MixinRenderWither",
     "settings.GameSettings",
-    "world.MixinWorld",
-    "MinecraftAccessor",
-    "MixinFontRenderer",
-    "MixinMinecraft",
-    "MixinModList",
-    "MixinNetHandlerPlayClient",
-    "MixinNetworkManager",
-    "PlayerSPAccessor"
+    "world.MixinWorld"
   ]
 }
