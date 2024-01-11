@@ -23,4 +23,4 @@ plugins {
 }
 
 
-rootProject.name = "KoreClient"
+rootProject.name = "CreedClient"

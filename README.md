@@ -1,6 +1,6 @@
-# Kore (2.0.0-alpha)
+# Creed (2.0.0-alpha)
 
-Kore is a forge 1.8.9 mod, kore goal is to automate simple skyblock annoying and repetitive tasks. You can access the mod through OneConfig or /koremod
+Creed is a forge 1.8.9 mod, Creed goal is to automate simple skyblock annoying and repetitive tasks. You can access the mod through OneConfig or /Creedmod
 
 ## Features
 
@@ -22,7 +22,7 @@ Kore is a forge 1.8.9 mod, kore goal is to automate simple skyblock annoying and
 
 Contributions are always welcome!
 
-Create a feature for `Kore` and open a `Pull Request` with your code!
+Create a feature for `Creed` and open a `Pull Request` with your code!
 
 ## Credits
 
