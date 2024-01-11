@@ -186,6 +186,9 @@ public class Aura extends Module {
         this.lastAttack = new MilliTimer();
         this.switchDelayTimer = new MilliTimer();
         this.blockDelay = new MilliTimer();
+
+        this.flagRisky();
+
         this.addSettings(this.mode, this.switchDelay, this.range, this.rotationRange, this.minCps, this.maxCps, this.sorting, this.rotationMode, this.smoothing, this.maxRotation, this.minRotation, this.fov, this.blockMode, this.players, this.mobs, this.invisibles, this.teams, this.rotationSwing, this.movementFix, this.namesOnly, this.namesonlyMode, this.middleClick, this.attackOnly, this.walls, this.toggleInGui, this.toggleOnLoad, this.onlySword, this.shovelSwap, when);
     }
 

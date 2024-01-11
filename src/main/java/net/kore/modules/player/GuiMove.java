@@ -38,6 +38,8 @@ public class GuiMove extends Module
         this.hideTerminalGui = new BooleanSetting("Hide terminals", false);
         this.sensivity = new NumberSetting("Sensivity", 1.5, 0.1, 3.0, 0.01, aBoolean -> !this.rotate.isEnabled());
         this.addSettings(this.hideTerminalGui, this.rotate, this.sensivity, this.drag);
+
+        this.flagRisky();
     }
 
     @Override

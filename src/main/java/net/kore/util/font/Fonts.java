@@ -23,6 +23,7 @@ public class Fonts
     public static MinecraftFontRenderer tenacity;
     public static MinecraftFontRenderer tenacityBold;
     public static MinecraftFontRenderer icon;
+    public static MinecraftFontRenderer icon_new;
 
     public static MinecraftFontRenderer getPrimary()
     {
@@ -67,6 +68,7 @@ public class Fonts
         Fonts.tenacity = new MinecraftFontRenderer(getFont("new_font.ttf", 19), true, false);
         Fonts.tenacityBold = new MinecraftFontRenderer(getFont("tenacity-bold.ttf", 19), true, false);
         Fonts.icon = new MinecraftFontRenderer(getFont("icon.ttf", 20), true, false);
+        Fonts.icon_new = new MinecraftFontRenderer(getFont("new_icon.ttf", 24), true, false);
     }
 
     static {

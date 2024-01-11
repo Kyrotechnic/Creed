@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.kore.managers.*;
 import net.kore.modules.Module;
 import net.kore.modules.combat.*;
+import net.kore.modules.hidden.ClientSettings;
 import net.kore.modules.misc.AutoHarp;
 import net.kore.modules.protection.CustomBrand;
 import net.kore.modules.protection.Proxy;
@@ -43,6 +44,7 @@ public class Kore {
 
 
     //module dependencies
+    public static ClientSettings clientSettings;
     public static Gui clickGui;
     public static ModHider modHider;
     public static AutoExperiments autoExperiments;

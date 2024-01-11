@@ -13,6 +13,7 @@
     "entity.PlayerMixin",
     "entity.PlayerSPMixin",
     "forge.MixinFMLCommonHandler",
+    "forge.MixinFMLNetworkHandler",
     "gui.MixinGui",
     "gui.MixinGuiButton",
     "gui.MixinGuiChat",

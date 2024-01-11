@@ -2,16 +2,22 @@ package net.kore.managers;
 
 import net.kore.modules.Module;
 import net.kore.modules.render.Gui;
+import net.kore.reflection.IgnoreModuleDependency;
 import net.kore.ui.hud.Component;
 import net.kore.ui.hud.DraggableComponent;
 import org.reflections.Reflections;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ModuleManager {
     public CopyOnWriteArrayList<Module> modules = new CopyOnWriteArrayList<>();
@@ -32,6 +38,7 @@ public class ModuleManager {
             try {
                 Module module = clazz.getDeclaredConstructor().newInstance();
                 modules.add(module);
+
                 module.assign();
             }
             catch (Exception ex)
@@ -40,6 +47,7 @@ public class ModuleManager {
             }
         }
     }
+
     public List<Module> getModules()
     {
         return modules;

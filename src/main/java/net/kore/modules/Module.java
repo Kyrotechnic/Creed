@@ -29,6 +29,7 @@ public class Module {
     @SerializedName("settings")
     public ConfigManager.ConfigSetting[] cfgSettings;
     private boolean devOnly;
+    public FlagType flagType;
     public final MilliTimer toggledTime;
     public final List<Setting> settings;
 
@@ -38,6 +39,8 @@ public class Module {
         this.name = name;
         this.keycode = keycode;
         this.category = category;
+
+        this.flagType = FlagType.LEGIT;
     }
 
     public Module(final String name, final Category category) {
@@ -57,6 +60,16 @@ public class Module {
     public void assign()
     {
 
+    }
+
+    public void flagRisky()
+    {
+        this.flagType = FlagType.RISKY;
+    }
+
+    public FlagType getFlagType()
+    {
+        return this.flagType;
     }
 
     public void onSave() {
@@ -172,12 +185,19 @@ public class Module {
         PLAYER("Player"),
         PROTECTIONS("Protections"),
         MISC("Misc"),
-        DEV("Dev");
+        DEV("Dev"),
+        HIDDEN("Hidden");
 
         public String name;
 
         private Category(final String name) {
             this.name = name;
         }
+    }
+
+    public enum FlagType
+    {
+        LEGIT,
+        RISKY
     }
 }

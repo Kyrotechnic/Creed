@@ -13,6 +13,8 @@ public class CustomBrand extends Module {
         super("Custom Brand", Category.PROTECTIONS);
 
         addSettings(brand, forwardMethod);
+
+        this.flagRisky();
     }
 
     @Override

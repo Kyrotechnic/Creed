@@ -17,6 +17,13 @@ public class Sprint extends Module
     }
 
     @Override
+    public FlagType getFlagType()
+    {
+        if (omni.isEnabled()) return FlagType.RISKY;
+        return FlagType.LEGIT;
+    }
+
+    @Override
     public void assign()
     {
         Kore.sprint = this;

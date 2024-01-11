@@ -26,6 +26,8 @@ public class NoSlow extends Module {
         this.mode = new ModeSetting("Mode", "Vanilla", new String[] { "Vanilla" });
         this.blockDelay = new MilliTimer();
         this.addSettings(this.mode, this.swordSlowdown, this.bowSlowdown, this.eatingSlowdown);
+
+        this.flagRisky();
     }
 
     @Override

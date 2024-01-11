@@ -38,6 +38,8 @@ public class AutoBlock extends Module
         this.noSlow = new BooleanSetting("No Slow", false);
         this.blockTimer = new MilliTimer();
         this.addSettings(this.mode, this.blockTime, this.players, this.mobs, this.onDamage, this.noSlow);
+
+        this.flagRisky();
     }
 
     @Override
