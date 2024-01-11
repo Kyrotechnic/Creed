@@ -23,4 +23,4 @@ plugins {
 }
 
 
-rootProject.name = "CreedClient"
+rootProject.name = "Creed"

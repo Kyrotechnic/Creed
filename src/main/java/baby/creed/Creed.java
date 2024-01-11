@@ -6,6 +6,7 @@ import baby.creed.modules.combat.*;
 import baby.creed.modules.hidden.ClientSettings;
 import baby.creed.modules.misc.AutoExperiments;
 import baby.creed.modules.misc.AutoHarp;
+import baby.creed.modules.misc.GhostBlocks;
 import baby.creed.modules.player.FastPlace;
 import baby.creed.modules.player.GuiMove;
 import baby.creed.modules.player.NoSlow;
@@ -69,6 +70,7 @@ public class Creed {
     public static CustomBrand customBrand;
     public static FastPlace fastPlace;
     public static InventoryDisplay inventoryDisplay;
+    public static GhostBlocks ghostBlocks;
     public static Sprint sprint;
     public static void start()
     {
