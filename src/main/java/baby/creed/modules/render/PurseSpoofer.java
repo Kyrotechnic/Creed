@@ -47,6 +47,8 @@ public class PurseSpoofer extends Module {
 
             double purseValue = Double.parseDouble(strip.split(" ")[1].replaceAll(",", ""));
 
+            purseValue += additionalCoins.getValue();
+
             String newPurse = Creed.fancy + "fPurse: " + Creed.fancy + "6" + String.format("%,.1f", purseValue);
 
             System.out.println("found purse");
