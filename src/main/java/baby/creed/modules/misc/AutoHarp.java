@@ -1,5 +1,6 @@
 package baby.creed.modules.misc;
 
+import baby.creed.events.PacketReceivedEvent;
 import baby.creed.util.Multithreading;
 import baby.creed.modules.Module;
 import net.minecraft.client.renderer.GlStateManager;
@@ -7,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.S2FPacketSetSlot;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

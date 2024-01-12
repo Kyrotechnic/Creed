@@ -54,17 +54,21 @@ public class AutoExperiments extends Module {
 
     public int getRandDelay()
     {
-        if(delayRandomizer.is("Off")) {
-            return 0;
-        } else if(delayRandomizer.is("Low")) {
-            return rand.nextInt(75);
-        } else if(delayRandomizer.is("Medium")) {
-            return rand.nextInt(150);
-        } else if(delayRandomizer.is("High")) {
-            return rand.nextInt(300);
+        int value = 150;
+
+        switch (delayRandomizer.getSelected())
+        {
+            case "Off":
+                return 0;
+            case "Low":
+                value = 75;
+                break;
+            case "High":
+                value = 300;
+                break;
         }
 
-        return rand.nextInt(150);
+        return rand.nextInt(value);
     }
 
     @Override

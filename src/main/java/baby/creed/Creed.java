@@ -73,6 +73,7 @@ public class Creed {
     public static InventoryDisplay inventoryDisplay;
     public static GhostBlocks ghostBlocks;
     public static Sprint sprint;
+    public static PurseSpoofer purseSpoofer;
     public static void start()
     {
         Creed.mc = Minecraft.getMinecraft();

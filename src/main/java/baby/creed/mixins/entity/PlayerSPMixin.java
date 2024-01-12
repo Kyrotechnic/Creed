@@ -110,6 +110,10 @@ public abstract class PlayerSPMixin extends AbstractClientPlayerMixin
         }
     }
 
+    /**
+     * @author Kyrotechnics
+     * @reason lol
+     */
     @Overwrite
     public void onUpdateWalkingPlayer() {
         final MotionUpdateEvent event = (MotionUpdateEvent)new MotionUpdateEvent.Pre(this.posX, this.getEntityBoundingBox().minY, this.posZ, this.rotationYaw, this.rotationPitch, this.onGround, this.isSprinting(), this.isSneaking());
