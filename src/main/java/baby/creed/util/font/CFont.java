@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.*;
 public class CFont
 {
     float imgSize;
-    CharData[] charData;
+    public CharData[] charData;
     Font font;
     boolean antiAlias;
     boolean fractionalMetrics;
