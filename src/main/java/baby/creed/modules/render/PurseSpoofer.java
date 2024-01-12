@@ -4,9 +4,11 @@ import baby.creed.Creed;
 import baby.creed.events.PacketReceivedEvent;
 import baby.creed.modules.Module;
 import baby.creed.settings.NumberSetting;
+import baby.creed.util.ModUtils;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S3EPacketTeams;
 import net.minecraft.util.StringUtils;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.lang.reflect.Field;
@@ -32,6 +34,11 @@ public class PurseSpoofer extends Module {
         Creed.purseSpoofer = this;
     }
 
+    @Override
+    public void onEnable() {
+        ModUtils.sendMessage("(PurseSpoofer) Usage -> .setcoins <value>");
+    }
+
     @SubscribeEvent
     public void packet(PacketReceivedEvent event)
     {
@@ -49,8 +56,10 @@ public class PurseSpoofer extends Module {
             final double addCoins = additionalCoins.getValue();
 
             String newPurse = Creed.fancy + "fPurse: " + Creed.fancy + "6" + String.format("%,.1f", ((float)purseValue + (float)addCoins));
-            System.out.println("found purse. New purse is " + newPurse);
-            System.out.println("Values are purse: " + purseValue + " and add is " + addCoins);
+            if(Creed.Debug.isToggled()) {
+                System.out.println("found purse. New purse is " + newPurse);
+                System.out.println("Values are purse: " + purseValue + " and add is " + addCoins);
+            }
 
             try {
                 Field field = S3EPacketTeams.class.getDeclaredField("prefix");
