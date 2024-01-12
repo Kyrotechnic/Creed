@@ -12,7 +12,7 @@ public class NumberSetting extends Setting
     double increment;
     @Expose
     @SerializedName("value")
-    private double value;
+    public double value;
 
     public NumberSetting(final String name, final double defaultValue, final double minimum, final double maximum, final double increment) {
         super(name);

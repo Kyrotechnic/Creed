@@ -15,9 +15,16 @@ public class SetCoinsCommand extends Command {
         if (args.length < 2)
         {
             ModUtils.sendMessage("Invalid command!");
+            return;
         }
+        long value = Long.parseLong(args[1]);
 
-        Creed.purseSpoofer.additionalCoins.setValue(Double.parseDouble(args[1]));
+        if (value == 0)
+        {
+            System.out.println("wtfrick parse");
+            return;
+        }
+        Creed.purseSpoofer.additionalCoins.setValue(value);
     }
 
     @Override

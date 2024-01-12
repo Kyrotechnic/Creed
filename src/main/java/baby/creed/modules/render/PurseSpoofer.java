@@ -16,7 +16,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.lang.reflect.Field;
 
 public class PurseSpoofer extends Module {
-    public NumberSetting additionalCoins = new NumberSetting("Coins", 0d, Double.MIN_VALUE, Double.MAX_VALUE, 0, aBoolean -> true);
+    public NumberSetting additionalCoins = new NumberSetting("Coins", 1000d, Double.MIN_VALUE + 1, Double.MAX_VALUE - 1, 0, aBoolean -> true)
+    {
+        @Override
+        public void setValue(double value)
+        {
+            this.value = value;
+        }
+    };
     public PurseSpoofer()
     {
         super("Purse Spoofer", Category.RENDER);
@@ -45,13 +52,15 @@ public class PurseSpoofer extends Module {
 
             if (!strip.startsWith("purse: ")) return;
 
-            double purseValue = Double.parseDouble(strip.split(" ")[1].replaceAll(",", ""));
+            final double purseValue = Double.parseDouble(strip.split(" ")[1].replaceAll(",", ""));
 
-            purseValue += additionalCoins.getValue();
+            final double addCoins = additionalCoins.getValue();
 
-            String newPurse = Creed.fancy + "fPurse: " + Creed.fancy + "6" + String.format("%,.1f", purseValue);
+            String newPurse = Creed.fancy + "fPurse: " + Creed.fancy + "6" + String.format("%,.1f", (purseValue + addCoins));
 
-            System.out.println("found purse");
+            System.out.println("found purse. New purse is " + newPurse);
+
+            System.out.println("Values are purse: " + purseValue + " and add is " + addCoins);
 
             try {
                 Field field = S3EPacketTeams.class.getDeclaredField("prefix");
