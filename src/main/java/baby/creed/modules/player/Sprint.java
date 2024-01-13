@@ -19,8 +19,8 @@ public class Sprint extends Module
     @Override
     public FlagType getFlagType()
     {
-        if (omni.isEnabled()) return FlagType.RISKY;
-        return FlagType.LEGIT;
+        if (omni.isEnabled()) return FlagType.DETECTED;
+        return FlagType.SAFE;
     }
 
     @Override

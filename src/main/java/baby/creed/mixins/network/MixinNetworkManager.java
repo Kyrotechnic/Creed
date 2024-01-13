@@ -1,4 +1,4 @@
-package baby.creed.mixins;
+package baby.creed.mixins.network;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.netty.bootstrap.Bootstrap;

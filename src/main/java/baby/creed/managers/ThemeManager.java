@@ -2,9 +2,9 @@ package baby.creed.managers;
 
 import baby.creed.Creed;
 import baby.creed.themes.Theme;
-import baby.creed.themes.impl.AstolfoTheme;
-import baby.creed.themes.impl.ColorShiftTheme;
-import baby.creed.themes.impl.RainbowTheme;
+import baby.creed.themes.impl.Astolfo;
+import baby.creed.themes.impl.Gradient;
+import baby.creed.themes.impl.Rainbow;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -36,9 +36,9 @@ public class ThemeManager {
         themes.add(activeTheme = new Theme("Vape", new Color(50, 50, 50), new Color(120, 55, 150)));
         themes.add(new Theme("Mint", new Color(5, 135, 65), new Color(158, 227, 191)));
         themes.add(new Theme("Devil", new Color(210, 39, 48), new Color(79, 13, 26)));
-        themes.add(new AstolfoTheme());
-        themes.add(new ColorShiftTheme());
-        themes.add(new RainbowTheme());
+        themes.add(new Astolfo());
+        themes.add(new Gradient());
+        themes.add(new Rainbow());
 
         String nameSelected = Creed.clickGui.colorMode.getSelected();
 

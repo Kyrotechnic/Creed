@@ -49,7 +49,7 @@ public class ModuleWindow extends Window {
         int offset = 30;
         if (!ModernClickGui.settingsOpened) {
             for (Module module : this.modulesInCategory) {
-                if (module.getFlagType() == Module.FlagType.RISKY && Creed.clientSettings.hideRiskyModules.isEnabled())
+                if (module.getFlagType() == Module.FlagType.DETECTED && Creed.clientSettings.hideDetectedModules.isEnabled())
                 {
                     continue;
                 }
@@ -58,14 +58,14 @@ public class ModuleWindow extends Window {
 
                 int shift = 105;
 
-                if (module.getFlagType() == Module.FlagType.RISKY)
+                if (module.getFlagType() == Module.FlagType.DETECTED)
                 {
                     shift += 10;
 
-                    Fonts.icon_new.drawString("A", ModernClickGui.getX() + 100, ModernClickGui.getY() + (double) offset + this.scrollAnimation.getValue() + 7, Color.YELLOW.getRGB());
+                    Fonts.newIcons.drawString("A", ModernClickGui.getX() + 100, ModernClickGui.getY() + (double) offset + this.scrollAnimation.getValue() + 6.0, Color.YELLOW.getRGB());
                 }
 
-                Fonts.getPrimary().drawString(module.getName(), ModernClickGui.getX() + shift, ModernClickGui.getY() + (double)offset + this.scrollAnimation.getValue() + 6.0, Color.WHITE.getRGB());
+                Fonts.getPrimary().drawString(module.getName(), ModernClickGui.getX() + shift, ModernClickGui.getY() + (double)offset + this.scrollAnimation.getValue() + 7.0, Color.WHITE.getRGB());
                 if (!module.getSettings().isEmpty()) {
                     Fonts.icon.drawString("C", ModernClickGui.getX() + (double)ModernClickGui.getWidth() - 21.0, ModernClickGui.getY() + (double)offset + this.scrollAnimation.getValue() + 8.0, Color.WHITE.getRGB());
                 }

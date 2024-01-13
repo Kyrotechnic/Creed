@@ -97,7 +97,7 @@ public class AutoHarp extends Module {
                         Multithreading.schedule(() -> {
                             slot = Creed.mc.thePlayer.openContainer.inventorySlots.get(finalSlotNumber);
                             timestamp = System.currentTimeMillis();
-                            if(Creed.Debug.isToggled()) {
+                            if(Creed.clientSettings.debug.isEnabled()) {
                                 ModUtils.sendMessage("(AutoHarp) Clicked Slot " + slot.slotNumber+9 + " (&c" + (timestamp - startedSongTimestamp) +"&f)");
                             }
                             Creed.mc.playerController.windowClick(Creed.mc.thePlayer.openContainer.windowId,finalSlotNumber + 9,2,3,Creed.mc.thePlayer);
@@ -116,7 +116,7 @@ public class AutoHarp extends Module {
         GlStateManager.disableDepth();
         Creed.mc.fontRendererObj.drawStringWithShadow("[Creed] ",5,5,new Color(255, 85, 85).getRGB());
         Creed.mc.fontRendererObj.drawStringWithShadow("AutoHarp",42,5,Color.WHITE.getRGB());
-        if (updates != 0 &&  Creed.Debug.isToggled()) {
+        if(Creed.clientSettings.debug.isEnabled()) {
             Creed.mc.fontRendererObj.drawStringWithShadow("Song Speed: " + (System.currentTimeMillis() - startedSongTimestamp) / updates + "ms",5,15,Color.LIGHT_GRAY.getRGB());
             Creed.mc.fontRendererObj.drawStringWithShadow("Gui Updates: " + updates,5,25,Color.LIGHT_GRAY.getRGB());
             Creed.mc.fontRendererObj.drawStringWithShadow("Time Elapsed : " + (System.currentTimeMillis() - startedSongTimestamp),5,35,Color.LIGHT_GRAY.getRGB());

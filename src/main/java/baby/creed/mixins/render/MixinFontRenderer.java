@@ -1,4 +1,4 @@
-package baby.creed.mixins;
+package baby.creed.mixins.render;
 
 import baby.creed.Creed;
 import baby.creed.util.font.CFont;

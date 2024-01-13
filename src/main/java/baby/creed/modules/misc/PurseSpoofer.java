@@ -1,4 +1,4 @@
-package baby.creed.modules.render;
+package baby.creed.modules.misc;
 
 import baby.creed.Creed;
 import baby.creed.events.PacketReceivedEvent;
@@ -24,7 +24,7 @@ public class PurseSpoofer extends Module {
     };
     public PurseSpoofer()
     {
-        super("Purse Spoofer", Category.RENDER);
+        super("Purse Spoofer", Category.MISC);
         addSettings(additionalCoins);
     }
 
@@ -56,7 +56,7 @@ public class PurseSpoofer extends Module {
             final double addCoins = additionalCoins.getValue();
 
             String newPurse = Creed.fancy + "fPurse: " + Creed.fancy + "6" + String.format("%,.1f", ((float)purseValue + (float)addCoins));
-            if(Creed.Debug.isToggled()) {
+            if(Creed.clientSettings.debug.isEnabled()) {
                 System.out.println("found purse. New purse is " + newPurse);
                 System.out.println("Values are purse: " + purseValue + " and add is " + addCoins);
             }

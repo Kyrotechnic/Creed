@@ -1,4 +1,4 @@
-package baby.creed.mixins;
+package baby.creed.mixins.network;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;

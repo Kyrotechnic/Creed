@@ -40,7 +40,7 @@ public class Module {
         this.keycode = keycode;
         this.category = category;
 
-        this.flagType = FlagType.LEGIT;
+        this.flagType = FlagType.SAFE;
     }
 
     public Module(final String name, final Category category) {
@@ -64,7 +64,7 @@ public class Module {
 
     public void flagRisky()
     {
-        this.flagType = FlagType.RISKY;
+        this.flagType = FlagType.DETECTED;
     }
 
     public FlagType getFlagType()
@@ -185,8 +185,7 @@ public class Module {
         PLAYER("Player"),
         PROTECTIONS("Protections"),
         MISC("Misc"),
-        DEV("Dev"),
-        HIDDEN("Hidden");
+        SETTINGS("Settings");
 
         public String name;
 
@@ -197,7 +196,7 @@ public class Module {
 
     public enum FlagType
     {
-        LEGIT,
-        RISKY
+        SAFE,
+        DETECTED
     }
 }

@@ -5,8 +5,8 @@ import baby.creed.Creed;
 
 import java.awt.*;
 
-public class RainbowTheme extends Theme {
-    public RainbowTheme()
+public class Rainbow extends Theme {
+    public Rainbow()
     {
         super("Rainbow");
     }

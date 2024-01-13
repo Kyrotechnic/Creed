@@ -5,10 +5,10 @@ import baby.creed.Creed;
 
 import java.awt.*;
 
-public class ColorShiftTheme extends Theme {
-    public ColorShiftTheme()
+public class Gradient extends Theme {
+    public Gradient()
     {
-        super("Color Shift");
+        super("Gradient");
     }
 
     @Override

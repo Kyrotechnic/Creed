@@ -5,9 +5,9 @@ import baby.creed.Creed;
 
 import java.awt.*;
 
-public class AstolfoTheme extends Theme {
+public class Astolfo extends Theme {
 
-    public AstolfoTheme()
+    public Astolfo()
     {
         super("Astolfo");
     }

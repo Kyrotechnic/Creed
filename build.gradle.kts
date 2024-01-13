@@ -74,15 +74,14 @@ val exportLib: Configuration by configurations.creating {
 }
 
 dependencies {
+    shadowImpl("org.reflections:reflections:0.10.2")
+    shadowImpl("gg.essential:loader-launchwrapper:1.2.1")
+
     minecraft("com.mojang:minecraft:1.8.9")
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
 
     compileOnly(libs.mixin)
-
-    shadowImpl("org.reflections:reflections:0.10.2")
-    //maybe remove long term
-    shadowImpl("gg.essential:loader-launchwrapper:1.2.1")
 }
 
 tasks.withType(JavaCompile::class) {
